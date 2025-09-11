@@ -88,8 +88,9 @@ INNER JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 WHERE YEAR(fis.OrderDate) = 2013
 ---
-```
-###🔸 View de Dimensão: vw_DimClientes
+````
+### 🔸 View de Dimensão: vw_DimClientes
+
 ```
 CREATE OR ALTER VIEW vw_DimClientes AS
 SELECT
