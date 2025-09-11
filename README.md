@@ -89,7 +89,7 @@ INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 WHERE YEAR(fis.OrderDate) = 2013
 ---
 ```
-🔸 View de Dimensão: vw_DimClientes
+###🔸 View de Dimensão: vw_DimClientes
 ```
 CREATE OR ALTER VIEW vw_DimClientes AS
 SELECT
@@ -101,7 +101,7 @@ FROM DimCustomer dc
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 ---
 ```
-6. Medidas DAX no Power BI
+## 6. Medidas DAX no Power BI
 ```
 ReceitaTotal = SUM(vw_FatoVendas[Receita Venda])
 LucroTotal = SUM(vw_FatoVendas[Lucro Venda])
@@ -110,7 +110,7 @@ TicketMedio = AVERAGE(vw_FatoVendas[Ticket Médio])
 Pedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
 ---
 ```
-6. Considerações Finais
+## 7. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
 
 O projeto está preparado para segmentações por país, gênero, categoria e tempo.
