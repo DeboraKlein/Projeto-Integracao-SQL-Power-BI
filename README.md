@@ -109,6 +109,10 @@ LucroTotal = SUM(vw_FatoVendas[Lucro Venda])
 MargemLucro = DIVIDE([LucroTotal], [ReceitaTotal])
 TicketMedio = AVERAGE(vw_FatoVendas[Ticket Médio])
 Pedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
+Custo Total = SUM(vw_FatoVendas[Custo Venda])
+QTD Clientes = COUNT(vw_DimClientes[ID Cliente])
+QTD Vendida = SUM(vw_FatoVendas[Qtd Vendida])
+
 ---
 ```
 ## 7. Considerações Finais
