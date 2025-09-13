@@ -5,7 +5,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 ## 🔗 Link do Dashboard
 
-[🔗 Acesse o dashboard no Power BI](https://seulink.com/dashboard)
+[🔗 Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
 ## 🧱 1. Estrutura do Projeto
 
@@ -28,7 +28,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 ![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
 
 ### 3️⃣ Smart Narrative com Insights
-![Smart Narrative](https://seulink.com/imagem3.png)
+![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 
 ---
 
