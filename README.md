@@ -24,8 +24,8 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 ### 1️⃣ Capa do Dashboard
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
 
-### 2️⃣ Bullet Chart com Metas Dinâmicas
-![Bullet Chart](https://seulink.com/imagem2.png)
+### 2️⃣ Visão Geral
+![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
 
 ### 3️⃣ Smart Narrative com Insights
 ![Smart Narrative](https://seulink.com/imagem3.png)
