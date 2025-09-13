@@ -1,15 +1,34 @@
 # 📊 Projeto de Integração SQL Server + Power BI
 
-## 1. Apresentação
-
-Este projeto tem como objetivo integrar dados do banco AdventureWorks 2014 com o Power BI, criando dashboards interativos e estratégicos para análise de vendas, clientes e desempenho por categoria e país.
-
----
-
-## 2. Fonte de Dados
-
-- **Banco:** AdventureWorks 2014  
+Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um dashboard interativo no Power BI, com foco em **análise de vendas, clientes e metas por país e ano**. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
 - **Download:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
+
+## 🔗 Link do Dashboard
+
+[🔗 Acesse o dashboard no Power BI](https://seulink.com/dashboard)
+
+## 🧱 Estrutura do Projeto
+
+- **Views SQL**: `vw_FatoVendas` e `vw_DimClientes` com joins e cálculos de lucro, margem e ticket médio.
+- **Medidas DAX**: Lucro Total, Receita Total, Meta por País e Ano, entre outras.
+- **Tabela de Metas**: Calculada dinamicamente com base em crescimento de 10% sobre o lucro do ano anterior.
+- **Visuais**:
+  - Bullet Chart com metas por país
+  - Mapa de clientes por país
+  - Sankey por categoria, país e cliente
+  - Cartões de KPIs
+  - Smart Narrative para insights automáticos
+
+## 🖼️ Capturas de Tela
+
+### 1️⃣ Visão Geral do Dashboard
+![Dashboard Visão Geral](https://seulink.com/imagem1.png)
+
+### 2️⃣ Bullet Chart com Metas Dinâmicas
+![Bullet Chart](https://seulink.com/imagem2.png)
+
+### 3️⃣ Smart Narrative com Insights
+![Smart Narrative](https://seulink.com/imagem3.png)
 
 ---
 
@@ -103,9 +122,16 @@ INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 ---
 ```
 ## 6. Medidas DAX no Power BI
+
+**ReceitaTotal**
 ```
 ReceitaTotal = SUM(vw_FatoVendas[Receita Venda])
+---
+```
+**LucroTotal**
+```
 LucroTotal = SUM(vw_FatoVendas[Lucro Venda])
+---
 MargemLucro = DIVIDE([LucroTotal], [ReceitaTotal])
 TicketMedio = AVERAGE(vw_FatoVendas[Ticket Médio])
 Pedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
@@ -158,6 +184,8 @@ ADDCOLUMNS(
         IF(ISBLANK(lucroAnterior), BLANK(), lucroAnterior * 1.1)
 )
 ---
+
+
 ```
 ## 8. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
