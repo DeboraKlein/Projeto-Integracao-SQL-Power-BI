@@ -7,7 +7,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 [🔗 Acesse o dashboard no Power BI](https://seulink.com/dashboard)
 
-## 🧱 Estrutura do Projeto
+## 🧱 1. Estrutura do Projeto
 
 - **Views SQL**: `vw_FatoVendas` e `vw_DimClientes` com joins e cálculos de lucro, margem e ticket médio.
 - **Medidas DAX**: Lucro Total, Receita Total, Meta por País e Ano, entre outras.
@@ -19,7 +19,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
   - Cartões de KPIs
   - Smart Narrative para insights automáticos
 
-## 🖼️ Capturas de Tela
+## 🖼️ 2. Capturas de Tela
 
 ### 1️⃣ Visão Geral do Dashboard
 ![Dashboard Visão Geral](https://seulink.com/imagem1.png)
@@ -77,7 +77,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 ### 🔸 View Principal: `vw_FatoVendas`
 
-```sql
+```
 CREATE OR ALTER VIEW vw_FatoVendas AS
 SELECT
     fis.SalesOrderNumber AS [Nº Pedido],
@@ -126,13 +126,17 @@ INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 **ReceitaTotal**
 ```
 ReceitaTotal = SUM(vw_FatoVendas[Receita Venda])
----
 ```
 **LucroTotal**
 ```
 LucroTotal = SUM(vw_FatoVendas[Lucro Venda])
----
+```
+**MargemLucro**
+```
 MargemLucro = DIVIDE([LucroTotal], [ReceitaTotal])
+```
+**TicketMedio**
+```
 TicketMedio = AVERAGE(vw_FatoVendas[Ticket Médio])
 Pedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
 Custo Total = SUM(vw_FatoVendas[Custo Venda])
