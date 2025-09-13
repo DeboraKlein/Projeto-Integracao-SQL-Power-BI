@@ -21,8 +21,8 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 ## 🖼️ 2. Capturas de Tela
 
-### 1️⃣ Visão Geral do Dashboard
-![Dashboard Visão Geral](https://seulink.com/imagem1.png)
+### 1️⃣ Capa do Dashboard
+![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
 
 ### 2️⃣ Bullet Chart com Metas Dinâmicas
 ![Bullet Chart](https://seulink.com/imagem2.png)
