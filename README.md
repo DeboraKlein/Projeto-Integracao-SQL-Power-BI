@@ -112,10 +112,54 @@ Pedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
 Custo Total = SUM(vw_FatoVendas[Custo Venda])
 QTD Clientes = COUNT(vw_DimClientes[ID Cliente])
 QTD Vendida = SUM(vw_FatoVendas[Qtd Vendida])
-
+Meta Lucro Pais Ano = 
+VAR pais = SELECTEDVALUE(vw_FatoVendas[País])
+VAR ano = SELECTEDVALUE(vw_FatoVendas[Ano])
+VAR lucroAnterior = 
+    CALCULATE(
+        SUM(vw_FatoVendas[Lucro Venda]),
+        FILTER(
+            ALL(vw_FatoVendas),
+            vw_FatoVendas[País] = pais &&
+            vw_FatoVendas[Ano] = ano - 1
+        )
+    )
+RETURN
+    IF(ISBLANK(lucroAnterior), BLANK(), lucroAnterior * 1.1)
 ---
 ```
-## 7. Considerações Finais
+## 7. Tabelas DAX no Power BI
+```
+
+LucroPorPaisAno = 
+SUMMARIZE(
+    vw_FatoVendas,
+    vw_FatoVendas[País],
+    vw_FatoVendas[Ano],
+    "LucroReal", SUM(vw_FatoVendas[Lucro Venda])
+)
+
+LucroPorPaisAnoComMeta = 
+ADDCOLUMNS(
+    LucroPorPaisAno,
+    "MetaLucro",
+    VAR pais = [País]
+    VAR ano = [Ano]
+    VAR lucroAnterior = 
+        CALCULATE(
+            SUM(vw_FatoVendas[Lucro Venda]),
+            FILTER(
+                vw_FatoVendas,
+                vw_FatoVendas[País] = pais &&
+                vw_FatoVendas[Ano] = ano - 1
+            )
+        )
+    RETURN
+        IF(ISBLANK(lucroAnterior), BLANK(), lucroAnterior * 1.1)
+)
+---
+```
+## 8. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
 
 O projeto está preparado para segmentações por país, gênero, categoria e tempo.
