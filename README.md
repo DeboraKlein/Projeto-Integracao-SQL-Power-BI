@@ -123,25 +123,42 @@ INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 ```
 ## 6. Medidas DAX no Power BI
 
-**ReceitaTotal**
+**Receita Total**
 ```
-ReceitaTotal = SUM(vw_FatoVendas[Receita Venda])
+Receita Total = SUM(vw_FatoVendas[Receita Venda])
 ```
-**LucroTotal**
+**Lucro Total**
 ```
-LucroTotal = SUM(vw_FatoVendas[Lucro Venda])
+Lucro Total = SUM(vw_FatoVendas[Lucro Venda])
 ```
-**MargemLucro**
+**Margem Lucro**
 ```
-MargemLucro = DIVIDE([LucroTotal], [ReceitaTotal])
+Margem Lucro = DIVIDE([LucroTotal], [ReceitaTotal])
 ```
-**TicketMedio**
+**Ticket Medio**
 ```
-TicketMedio = AVERAGE(vw_FatoVendas[Ticket Médio])
-Pedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
+Ticket Medio = AVERAGE(vw_FatoVendas[Ticket Médio])
+```
+**QTD Pedidos**
+```
+QTDPedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
+```
+**Custo Total**
+```
 Custo Total = SUM(vw_FatoVendas[Custo Venda])
+```
+**QTD Clientes**
+```
 QTD Clientes = COUNT(vw_DimClientes[ID Cliente])
+```
+**QTD Vendida**
+```
 QTD Vendida = SUM(vw_FatoVendas[Qtd Vendida])
+
+```
+**Meta Lucro Pais Ano**
+```
+
 Meta Lucro Pais Ano = 
 VAR pais = SELECTEDVALUE(vw_FatoVendas[País])
 VAR ano = SELECTEDVALUE(vw_FatoVendas[Ano])
@@ -160,7 +177,10 @@ RETURN
 ```
 ## 7. Tabelas DAX no Power BI
 ```
-
+---
+```
+**Lucro Por Pais Ano**
+```
 LucroPorPaisAno = 
 SUMMARIZE(
     vw_FatoVendas,
@@ -169,6 +189,9 @@ SUMMARIZE(
     "LucroReal", SUM(vw_FatoVendas[Lucro Venda])
 )
 
+```
+**Lucro Por Pais Ano Com Meta**
+```
 LucroPorPaisAnoComMeta = 
 ADDCOLUMNS(
     LucroPorPaisAno,
