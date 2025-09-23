@@ -159,21 +159,20 @@ QTD Vendida = SUM(vw_FatoVendas[Qtd Vendida])
 **Meta Lucro Pais Ano**
 ```
 
-Meta Lucro Pais Ano = 
+MetaLucroPorPaisAno = 
 VAR pais = SELECTEDVALUE(vw_FatoVendas[País])
 VAR ano = SELECTEDVALUE(vw_FatoVendas[Ano])
 VAR lucroAnterior = 
-    CALCULATE(
-        SUM(vw_FatoVendas[Lucro Venda]),
-        FILTER(
-            ALL(vw_FatoVendas),
-            vw_FatoVendas[País] = pais &&
-            vw_FatoVendas[Ano] = ano - 1
-        )
-    )
+ CALCULATE(
+ SUM(vw_FatoVendas[Lucro Venda]),
+ FILTER(
+ ALL(vw_FatoVendas),
+ vw_FatoVendas[País] = pais &&
+ vw_FatoVendas[Ano] = ano - 1
+ )
+ )
 RETURN
-    IF(ISBLANK(lucroAnterior), BLANK(), lucroAnterior * 1.1)
-
+ COALESCE(lucroAnterior * 1.1, BLANK())
 ```
 ## 7. Tabelas DAX no Power BI
 ```
