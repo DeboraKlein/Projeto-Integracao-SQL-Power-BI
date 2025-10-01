@@ -1,13 +1,13 @@
-# 📊 Projeto de Integração SQL Server + Power BI
+# Projeto de Integração SQL Server + Power BI
 
 Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um dashboard interativo no Power BI, com foco em **análise de vendas, clientes e metas por país e ano**. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
 - **Download:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
-## 🔗 Link do Dashboard
+## Link do Dashboard
 
 [🔗 Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
-## 🧱 1. Estrutura do Projeto
+## 1. Estrutura do Projeto
 
 - **Views SQL**: `vw_FatoVendas` e `vw_DimClientes` com joins e cálculos de lucro, margem e ticket médio.
 - **Medidas DAX**: Lucro Total, Receita Total, Meta por País e Ano, entre outras.
@@ -19,22 +19,22 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
   - Cartões de KPIs
   - Smart Narrative para insights automáticos
 
-## 🖼️ 2. Capturas de Tela
+## 2. Capturas de Tela
 
-### 1️⃣ Capa do Dashboard
+###  Capa do Dashboard
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
 
-### 2️⃣ Visão Geral
+###  Visão Geral
 ![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
 
-### 3️⃣ Smart Narrative com Insights
+###  Smart Narrative com Insights
 ![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 
 ---
 
 ## 3. Indicadores Definidos
 
-### 🔹 Aba Geral
+### Aba Geral
 - Receita Total  
 - Quantidade Vendida  
 - Total de Categorias de Produtos  
@@ -44,13 +44,13 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 - Quantidade Vendida por Mês  
 - Lucro por País  
 
-### 🔹 Aba Clientes
+###  Aba Clientes
 - Vendas por País  
 - Clientes por País  
 - Vendas por Gênero  
 - Vendas por Categoria  
 
-### 🔹 KPIs Adicionais
+###  KPIs Adicionais
 - Ticket Médio  
 - Custo Médio por Pedido  
 - Lucro Médio por Pedido  
@@ -75,7 +75,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 ## 5. Views Criadas
 
-### 🔸 View Principal: `vw_FatoVendas`
+###  View Principal: `vw_FatoVendas`
 
 ```
 CREATE OR ALTER VIEW vw_FatoVendas AS
@@ -108,7 +108,7 @@ INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 
 
 ````
-### 🔸 View de Dimensão: vw_DimClientes
+###  View de Dimensão: vw_DimClientes
 
 ```
 CREATE OR ALTER VIEW vw_DimClientes AS
@@ -220,4 +220,4 @@ O projeto está preparado para segmentações por país, gênero, categoria e te
 
 Evitamos múltiplas fontes desconectadas para garantir performance e consistência no Power BI.
 
-Projeto desenvolvido por Debora Klein 💡 Integrando dados com propósito e inteligência.
+Projeto desenvolvido por Debora Klein Integrando dados com propósito e inteligência.
