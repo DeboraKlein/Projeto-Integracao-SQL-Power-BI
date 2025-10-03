@@ -1,6 +1,6 @@
 
 # Projeto de Integração SQL Server + Power BI
-Este projeto utiliza dados do banco AdventureWorks DW 2014 para construir um dashboard interativo no Power BI, com foco em análise de vendas, clientes e metas por país e ano. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
+### Este projeto utiliza dados do banco AdventureWorks DW 2014 para construir um dashboard interativo no Power BI, com foco em análise de vendas, clientes e metas por país e ano. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
 ---
 
 ## 1. Business Understanding
