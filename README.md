@@ -1,220 +1,192 @@
 # SQL Server + Power BI Integration Project
-This project uses data from the AdventureWorks DW 2014 database to build an interactive dashboard in Power BI, focusing on sales analysis, customer insights, and profit targets by country and year. 
-Integration was done via custom SQL views, optimized DAX measures, and strategic visuals.
+### This project uses data from the AdventureWorks DW 2014 database to build an interactive dashboard in Power BI, focusing on sales analysis, customer behavior, and profit targets by country and year. Integration was done via custom SQL views, optimized DAX measures, and strategic visuals.
 
-#### Download: Microsoft Docs 
+## 1. Business Understanding
+The goal is to deliver a strategic view of global sales performance, with emphasis on:
+
+- Profit and revenue by country and year
+
+- Performance by product category
+
+- Customer behavior and segmentation
+
+- Monitoring targets with projected growth
+
+## 2. Data Understanding
+Source: #### Download: Microsoft Docs 
 [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
+### Tables used:
 
-#### Dashboard Link
-[Access the Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+- FactInternetSales
 
+- DimCustomer, DimGeography
 
-## 1. Project Structure
-**SQL Views:** vw_FatoVendas and vw_DimClientes with joins and calculations for profit, margin, and average ticket.
+- DimProduct, DimProductSubcategory, DimProductCategory
 
-**DAX Measures:** Total Profit, Total Revenue, Target by Country and Year, among others.
+- DimSalesTerritory
 
-**Target Table:** Dynamically calculated based on 10% growth over the previous year's profit.
+### Initial observations:
 
-### Visuals:
+- Seasonal variations in revenue
 
-Bullet Chart with targets by country
+- Margin differences across countries
 
-Customer map by country
+- Uneven customer distribution by region
 
-Sankey diagram by category, country, and customer
-
-KPI cards
-
-Smart Narrative for automated insights
-
-## 2. Screenshots
-Dashboard Cover
-![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
-Overview
-![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
-Smart Narrative with Insights
-![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 ## 3. Defined Indicators
-General Tab
-Total Revenue
+### General Tab
+- Total Revenue
 
-Quantity Sold
+- Quantity Sold
 
-Total Product Categories
+- Total Product Categories
 
-Number of Customers
+- Number of Customers
 
-Monthly Revenue and Profit
+- Monthly Revenue and Profit
 
-Profit Margin
+- Profit Margin
 
-Monthly Quantity Sold
+- Monthly Quantity Sold
 
-Profit by Country
+- Profit by Country
 
-Customers Tab
-Sales by Country
+### Customers Tab
+- Sales by Country
 
-Customers by Country
+- Customers by Country
 
-Sales by Gender
+- Sales by Gender
 
-Sales by Category
+- Sales by Category
 
-Additional KPIs
-Average Ticket
+### Additional KPIs
+- Average Ticket
 
-Average Cost per Order
+- Average Cost per Order
 
-Average Profit per Order
+- Average Profit per Order
 
-Month-over-Month Revenue Variation
+- Month-over-Month Revenue Variation
 
-Year-to-Date Revenue
+- Year-to-Date Revenue (YTD)
 
-Top 5 Best-Selling Categories
+- Top 5 Best-Selling Categories
 
-New vs. Returning Customers
+- New vs. Returning Customers
 
-## 4. Tables Used
-FactInternetSales
+### 4. Tables Used
+- FactInternetSales
 
-DimCustomer
+- DimCustomer
 
-DimGeography
+- DimGeography
 
-DimProduct
+- DimProduct
 
-DimProductSubcategory
+- DimProductSubcategory
 
-DimProductCategory
+- DimProductCategory
 
-DimSalesTerritory
+- DimSalesTerritory
 
-## 5. Created Views
-Main View: vw_FatoVendas
-sql
+## 5. Data Preparation
+#### Two SQL views were created to streamline modeling:
+
+### Main View: vw_FatoVendas
+````
 CREATE OR ALTER VIEW vw_FatoVendas AS
 SELECT
-    fis.SalesOrderNumber AS [Order No],
-    fis.OrderDate AS [Order Date],
-    FORMAT(fis.OrderDate, 'yyyy-MM') AS [Year-Month],
-    YEAR(fis.OrderDate) AS [Year],
-    MONTH(fis.OrderDate) AS [Month],
-    dpc.EnglishProductCategoryName AS [Product Category],
-    dc.CustomerKey AS [Customer ID],
-    dc.FirstName + ' ' + dc.LastName AS [Customer Name],
-    REPLACE(REPLACE(dc.Gender, 'M', 'Male'), 'F', 'Female') AS [Gender],
-    dg.EnglishCountryRegionName AS [Country],
-    fis.OrderQuantity AS [Quantity Sold],
-    fis.SalesAmount AS [Sales Revenue],
-    fis.TotalProductCost AS [Sales Cost],
-    fis.SalesAmount - fis.TotalProductCost AS [Sales Profit],
+    fis.SalesOrderNumber AS [Nº Pedido],
+    fis.OrderDate AS [Data Pedido],
+    FORMAT(fis.OrderDate, 'yyyy-MM') AS [Ano-Mês],
+    YEAR(fis.OrderDate) AS [Ano],
+    MONTH(fis.OrderDate) AS [Mês],
+    dpc.EnglishProductCategoryName AS [Categoria Produto],
+    dc.CustomerKey AS [ID Cliente],
+    dc.FirstName + ' ' + dc.LastName AS [Nome Cliente],
+    REPLACE(REPLACE(dc.Gender, 'M', 'Masculino'), 'F', 'Feminino') AS [Sexo],
+    dg.EnglishCountryRegionName AS [País],
+    fis.OrderQuantity AS [Qtd Vendida],
+    fis.SalesAmount AS [Receita Venda],
+    fis.TotalProductCost AS [Custo Venda],
+    fis.SalesAmount - fis.TotalProductCost AS [Lucro Venda],
     CASE 
         WHEN fis.SalesAmount = 0 THEN 0
         ELSE (fis.SalesAmount - fis.TotalProductCost) / fis.SalesAmount
-    END AS [Profit Margin %],
-    fis.SalesAmount / NULLIF(fis.OrderQuantity, 0) AS [Average Ticket]
+    END AS [Margem Lucro %],
+    fis.SalesAmount / NULLIF(fis.OrderQuantity, 0) AS [Ticket Médio]
 FROM FactInternetSales fis
 INNER JOIN DimProduct dp ON fis.ProductKey = dp.ProductKey
     INNER JOIN DimProductSubcategory dps ON dp.ProductSubcategoryKey = dps.ProductSubcategoryKey
         INNER JOIN DimProductCategory dpc ON dps.ProductCategoryKey = dpc.ProductCategoryKey
 INNER JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
-Dimension View: vw_DimClientes
-sql
+````
+### Dimension View: vw_DimClientes
+````
 CREATE OR ALTER VIEW vw_DimClientes AS
 SELECT
-    dc.CustomerKey AS [Customer ID],
-    dc.FirstName + ' ' + dc.LastName AS [Customer Name],
-    REPLACE(REPLACE(dc.Gender, 'M', 'Male'), 'F', 'Female') AS [Gender],
-    dg.EnglishCountryRegionName AS [Country]
+    dc.CustomerKey AS [ID Cliente],
+    dc.FirstName + ' ' + dc.LastName AS [Nome Cliente],
+    REPLACE(REPLACE(dc.Gender, 'M', 'Masculino'), 'F', 'Feminino') AS [Sexo],
+    dg.EnglishCountryRegionName AS [País]
 FROM DimCustomer dc
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
+````
 
-## 6. DAX Measures in Power BI
-Total Revenue
+## 6. Modeling
+### DAX measures created in Power BI:
 
-DAX
-Receita Total = SUM(vw_FatoVendas[Sales Revenue])
-Total Profit
+- Total Revenue, Total Profit, Profit Margin, Average Ticket
 
-DAX
-Lucro Total = SUM(vw_FatoVendas[Sales Profit])
-Profit Margin
+- ProfitTargetByCountryYear: 10% growth over previous year's profit
 
-DAX
-Margem Lucro = DIVIDE([LucroTotal], [ReceitaTotal])
-Average Ticket
+- ProfitByCountryYearWithTarget: comparison between actual profit and target
 
-DAX
-Ticket Medio = AVERAGE(vw_FatoVendas[Average Ticket])
-Order Count
-
-DAX
-QTDPedidos = DISTINCTCOUNT(vw_FatoVendas[Order No])
-Total Cost
-
-DAX
-Custo Total = SUM(vw_FatoVendas[Sales Cost])
-Customer Count
-
-DAX
-QTD Clientes = COUNT(vw_DimClientes[Customer ID])
-Quantity Sold
-
-DAX
-QTD Vendida = SUM(vw_FatoVendas[Quantity Sold])
-Profit Target by Country and Year
-
-DAX
-MetaLucroPorPaisAno = 
-VAR pais = SELECTEDVALUE(vw_FatoVendas[Country])
-VAR ano = SELECTEDVALUE(vw_FatoVendas[Year])
-VAR lucroAnterior = 
- CALCULATE(
- SUM(vw_FatoVendas[Sales Profit]),
- FILTER(
- ALL(vw_FatoVendas),
- vw_FatoVendas[Country] = pais &&
- vw_FatoVendas[Year] = ano - 1
- )
- )
-RETURN
- COALESCE(lucroAnterior * 1.1, BLANK())
-## 7. DAX Tables in Power BI
-Profit by Country and Year
-
-DAX
-LucroPorPaisAno = 
+#### Example DAX table:
+````
+ProfitByCountryYear = 
 SUMMARIZE(
     vw_FatoVendas,
     vw_FatoVendas[Country],
     vw_FatoVendas[Year],
-    "RealProfit", SUM(vw_FatoVendas[Sales Profit])
+    "ActualProfit", SUM(vw_FatoVendas[Sales Profit])
 )
-Profit by Country and Year with Target
+````
+## 7. Evaluation
+### Extracted insights:
 
-DAX
-LucroPorPaisAnoComMeta = 
-ADDCOLUMNS(
-    LucroPorPaisAno,
-    "ProfitTarget",
-    VAR pais = [Country]
-    VAR ano = [Year]
-    VAR lucroAnterior = 
-        CALCULATE(
-            SUM(vw_FatoVendas[Sales Profit]),
-            FILTER(
-                vw_FatoVendas,
-                vw_FatoVendas[Country] = pais &&
-                vw_FatoVendas[Year] = ano - 1
-            )
-        )
-    RETURN
-        IF(ISBLANK(lucroAnterior), BLANK(), lucroAnterior * 1.1)
-)
+- Top profit countries: USA, Canada, and UK
+
+- Highest margin categories: Bikes and Components
+
+- Higher average ticket in countries with lower sales volume
+
+- Returning customers generate more revenue per order
+
+- Profit targets are achievable by focusing on high-margin countries
+
+## 8. Screenshots
+
+### Dashboard Cover
+![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
+### Overview
+![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
+### Smart Narrative with Insights
+![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
+
+
+## 9. Dashboard Link
+
+[Access the Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+
+## 10. Final Considerations
+- All columns required for analysis are integrated into the views.
+- The project is ready for segmentation by country, gender, category, and time. 
+- Disconnected sources were avoided to ensure performance and consistency in Power BI.
+- Project developed by Débora Klein — integrating data with purpose and intelligence.
+
 ## 8. Final Considerations
 All columns required for analysis are integrated into the views.
