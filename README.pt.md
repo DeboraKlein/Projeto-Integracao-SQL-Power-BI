@@ -127,7 +127,7 @@ FROM DimCustomer dc
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 
 ```
-4. Modeling
+## 6. Modeling
 Medidas DAX criadas no Power BI:
 
 Receita Total, Lucro Total, Margem Lucro, Ticket Médio
@@ -143,7 +143,7 @@ DAX
 LucroPorPaisAno = 
 SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
 ````
-## 5. Capturas de Tela
+## 7. Capturas de Tela
 
 ###  Capa do Dashboard
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
@@ -154,12 +154,12 @@ SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
 ###  Smart Narrative com Insights
 ![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 
-## 6. Link do Dashboard
+## 8. Link do Dashboard
 
 [ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
 
-## 7. Considerações Finais
+## 9. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
 
 
