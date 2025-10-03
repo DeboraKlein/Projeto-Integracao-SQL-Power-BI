@@ -21,13 +21,13 @@
 
 #### Tabelas utilizadas:
 
-- FactInternetSales
+- `FactInternetSales`
 
-- DimCustomer, DimGeography
+- `DimCustomer`, `DimGeography`
 
-- DimProduct, DimProductSubcategory, DimProductCategory
+- `DimProduct`, `DimProductSubcategory`, `DimProductCategory`
 
-- DimSalesTerritory
+- `DimSalesTerritory`
 
 
 #### Principais observações iniciais:
@@ -66,21 +66,8 @@
 - Top 5 Categorias mais Vendidas  
 - Clientes Novos vs Recorrentes  
 
----
 
-## 4. Tabelas Utilizadas
-
-- `FactInternetSales`  
-- `DimCustomer`  
-- `DimGeography`  
-- `DimProduct`  
-- `DimProductSubcategory`  
-- `DimProductCategory`  
-- `DimSalesTerritory`
-
----
-
-## 5.  Data Preparation
+## 4.  Data Preparation
 #### Criação de duas views SQL para facilitar a modelagem:
 
 ###  View Principal: `vw_FatoVendas`
@@ -129,7 +116,7 @@ FROM DimCustomer dc
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 
 ```
-## 6. Modeling
+## 5. Modeling
 ### Medidas DAX criadas no Power BI:
 
 **Receita Total**, **Lucro Total**, **Margem Lucro**, **Ticket Médio**
@@ -151,7 +138,7 @@ SUMMARIZE(
 )
 
 ````
-## 7. Evaluation
+## 6. Evaluation
 ### Insights extraídos:
 
 - Países com maior lucro: EUA, Canadá e Reino Unido
@@ -164,7 +151,7 @@ SUMMARIZE(
 
 - Metas de lucro são atingíveis com foco em países de alta margem
   
-## 8. Capturas de Tela
+## 7. Capturas de Tela
 
 ###  Capa do Dashboard
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
@@ -177,12 +164,12 @@ SUMMARIZE(
 
 
 
-## 9. Link do Dashboard
+## 8. Link do Dashboard
 
 [ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
 
-## 10. Considerações Finais
+## 9. Considerações Finais
 
 Todas as colunas necessárias para análise estão integradas nas views.
 
