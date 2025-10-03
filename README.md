@@ -33,7 +33,7 @@ Smart Narrative for automated insights
 Dashboard Cover
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
 Overview
-
+![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
 Smart Narrative with Insights
 
 ## 3. Defined Indicators
