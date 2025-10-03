@@ -1,7 +1,7 @@
 
 # Projeto de Integração SQL Server + Power BI
 ### Este projeto utiliza dados do banco AdventureWorks DW 2014 para construir um dashboard interativo no Power BI, com foco em análise de vendas, clientes e metas por país e ano. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
----
+
 
 ## 1. Business Understanding
 
@@ -14,10 +14,10 @@
 - Análise de clientes e comportamento de compra
 
 - Acompanhamento de metas com crescimento projetado
----
+
 
 ## 2. Data Understanding
-Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
+### Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
 #### Tabelas utilizadas:
 
@@ -28,7 +28,7 @@ Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://do
 - DimProduct, DimProductSubcategory, DimProductCategory
 
 - DimSalesTerritory
----
+
 
 #### Principais observações iniciais:
 
@@ -37,7 +37,7 @@ Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://do
 - Diferenças de margem entre países
 
 - Distribuição desigual de clientes por região
----
+
 
 ## 3. Indicadores Definidos
 
@@ -81,7 +81,7 @@ Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://do
 ---
 
 ## 5.  Data Preparation
-Criação de duas views SQL para facilitar a modelagem:
+#### Criação de duas views SQL para facilitar a modelagem:
 
 ###  View Principal: `vw_FatoVendas`
 
@@ -130,7 +130,7 @@ INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 
 ```
 ## 6. Modeling
-Medidas DAX criadas no Power BI:
+### Medidas DAX criadas no Power BI:
 
 **Receita Total**, **Lucro Total**, **Margem Lucro**, **Ticket Médio**
 
@@ -138,15 +138,21 @@ Medidas DAX criadas no Power BI:
 
 **LucroPorPaisAnoComMeta:** comparação entre lucro real e meta
 
-Tabelas DAX:
+Exemplo de Tabela DAX:
 
 DAX
 ````
-LucroPorPaisAno = 
-SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
+ProfitByCountryYear = 
+SUMMARIZE(
+    vw_FatoVendas,
+    vw_FatoVendas[Country],
+    vw_FatoVendas[Year],
+    "ActualProfit", SUM(vw_FatoVendas[Sales Profit])
+)
+
 ````
 ## 7. Evaluation
-Insights extraídos:
+### Insights extraídos:
 
 - Países com maior lucro: EUA, Canadá e Reino Unido
 
@@ -157,7 +163,6 @@ Insights extraídos:
 - Clientes recorrentes geram maior receita por pedido
 
 - Metas de lucro são atingíveis com foco em países de alta margem
----
   
 ## 8. Capturas de Tela
 
@@ -170,13 +175,13 @@ Insights extraídos:
 ###  Smart Narrative com Insights
 ![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 
----
+
 
 ## 9. Link do Dashboard
 
 [ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
---- 
+
 ## 10. Considerações Finais
 
 Todas as colunas necessárias para análise estão integradas nas views.
