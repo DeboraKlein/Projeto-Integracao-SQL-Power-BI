@@ -3,10 +3,6 @@
 
 Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um dashboard interativo no Power BI, com foco em **análise de vendas, clientes e metas por país e ano**. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
 
-
-## Link do Dashboard
-[ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
-
 ## 1. Business Understanding
 
 O objetivo é fornecer uma visão estratégica das vendas globais, com foco em:
@@ -39,18 +35,6 @@ Variações sazonais de receita
 Diferenças de margem entre países
 
 Distribuição desigual de clientes por região
-
-## 2. Capturas de Tela
-
-###  Capa do Dashboard
-![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
-
-###  Visão Geral
-![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
-
-###  Smart Narrative com Insights
-![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
-
 ---
 
 ## 3. Indicadores Definidos
@@ -159,7 +143,23 @@ DAX
 LucroPorPaisAno = 
 SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
 ````
-## 8. Considerações Finais
+## 5. Capturas de Tela
+
+###  Capa do Dashboard
+![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
+
+###  Visão Geral
+![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
+
+###  Smart Narrative com Insights
+![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
+
+## 6. Link do Dashboard
+
+[ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+
+
+## 7. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
 
 
