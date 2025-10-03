@@ -143,7 +143,19 @@ DAX
 LucroPorPaisAno = 
 SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
 ````
-## 7. Capturas de Tela
+## 7. Evaluation
+Insights extraídos:
+
+Países com maior lucro: EUA, Canadá e Reino Unido
+
+Categorias com maior margem: Bikes e Components
+
+Ticket médio mais alto em países com menor volume de vendas
+
+Clientes recorrentes geram maior receita por pedido
+
+Metas de lucro são atingíveis com foco em países de alta margem
+## 8. Capturas de Tela
 
 ###  Capa do Dashboard
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
@@ -154,12 +166,12 @@ SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
 ###  Smart Narrative com Insights
 ![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 
-## 8. Link do Dashboard
+## 9. Link do Dashboard
 
 [ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
 
-## 9. Considerações Finais
+## 10. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
 
 
