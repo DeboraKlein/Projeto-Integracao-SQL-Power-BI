@@ -1,5 +1,5 @@
 # SQL Server + Power BI Integration Project
-### This project uses data from the AdventureWorks DW 2014 database to build an interactive dashboard in Power BI, focusing on sales analysis, customer behavior, and profit targets by country and year. Integration was done via custom SQL views, optimized DAX measures, and strategic visuals.
+#### This project uses data from the AdventureWorks DW 2014 database to build an interactive dashboard in Power BI, focusing on sales analysis, customer behavior, and profit targets by country and year. Integration was done via custom SQL views, optimized DAX measures, and strategic visuals.
 
 ## 1. Business Understanding
 The goal is to deliver a strategic view of global sales performance, with emphasis on:
