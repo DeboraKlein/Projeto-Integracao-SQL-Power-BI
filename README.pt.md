@@ -7,34 +7,34 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 O objetivo é fornecer uma visão estratégica das vendas globais, com foco em:
 
-Lucro e receita por país e ano
+- Lucro e receita por país e ano
 
-Performance por categoria de produto
+- Performance por categoria de produto
 
-Análise de clientes e comportamento de compra
+- Análise de clientes e comportamento de compra
 
-Acompanhamento de metas com crescimento projetado
+- Acompanhamento de metas com crescimento projetado
 
 ## 2. Data Understanding
 Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
 Tabelas utilizadas:
 
-FactInternetSales
+- FactInternetSales
 
-DimCustomer, DimGeography
+- DimCustomer, DimGeography
 
-DimProduct, DimProductSubcategory, DimProductCategory
+- DimProduct, DimProductSubcategory, DimProductCategory
 
-DimSalesTerritory
+- DimSalesTerritory
 
 Visualizações iniciais revelaram:
 
-Variações sazonais de receita
+- Variações sazonais de receita
 
-Diferenças de margem entre países
+- Diferenças de margem entre países
 
-Distribuição desigual de clientes por região
+- Distribuição desigual de clientes por região
 ---
 
 ## 3. Indicadores Definidos
@@ -146,15 +146,16 @@ SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
 ## 7. Evaluation
 Insights extraídos:
 
-Países com maior lucro: EUA, Canadá e Reino Unido
+- Países com maior lucro: EUA, Canadá e Reino Unido
 
-Categorias com maior margem: Bikes e Components
+- Categorias com maior margem: Bikes e Components
 
-Ticket médio mais alto em países com menor volume de vendas
+- Ticket médio mais alto em países com menor volume de vendas
 
-Clientes recorrentes geram maior receita por pedido
+- Clientes recorrentes geram maior receita por pedido
 
-Metas de lucro são atingíveis com foco em países de alta margem
+- Metas de lucro são atingíveis com foco em países de alta margem
+  
 ## 8. Capturas de Tela
 
 ###  Capa do Dashboard
