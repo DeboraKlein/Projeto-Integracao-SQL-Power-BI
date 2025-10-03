@@ -13,7 +13,7 @@ The goal is to deliver a strategic view of global sales performance, with emphas
 - Monitoring targets with projected growth
 
 ## 2. Data Understanding
-Source: #### Download: Microsoft Docs 
+#### Source: Download: Microsoft Docs 
 [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
 ### Tables used:
