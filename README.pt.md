@@ -1,23 +1,44 @@
+
 # Projeto de Integração SQL Server + Power BI
 
 Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um dashboard interativo no Power BI, com foco em **análise de vendas, clientes e metas por país e ano**. A integração foi feita via views SQL personalizadas, com medidas DAX otimizadas e visuais estratégicos.
-- **Download:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
+
 
 ## Link do Dashboard
-
 [ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
-## 1. Estrutura do Projeto
+## 1. Business Understanding
 
-- **Views SQL**: `vw_FatoVendas` e `vw_DimClientes` com joins e cálculos de lucro, margem e ticket médio.
-- **Medidas DAX**: Lucro Total, Receita Total, Meta por País e Ano, entre outras.
-- **Tabela de Metas**: Calculada dinamicamente com base em crescimento de 10% sobre o lucro do ano anterior.
-- **Visuais**:
-  - Bullet Chart com metas por país
-  - Mapa de clientes por país
-  - Sankey por categoria, país e cliente
-  - Cartões de KPIs
-  - Smart Narrative para insights automáticos
+O objetivo é fornecer uma visão estratégica das vendas globais, com foco em:
+
+Lucro e receita por país e ano
+
+Performance por categoria de produto
+
+Análise de clientes e comportamento de compra
+
+Acompanhamento de metas com crescimento projetado
+
+## 2. Data Understanding
+Fonte: AdventureWorks DW 2014 **Download Database:** [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
+
+Tabelas utilizadas:
+
+FactInternetSales
+
+DimCustomer, DimGeography
+
+DimProduct, DimProductSubcategory, DimProductCategory
+
+DimSalesTerritory
+
+Visualizações iniciais revelaram:
+
+Variações sazonais de receita
+
+Diferenças de margem entre países
+
+Distribuição desigual de clientes por região
 
 ## 2. Capturas de Tela
 
@@ -73,7 +94,8 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 ---
 
-## 5. Views Criadas
+## 5.  Data Preparation
+Criação de duas views SQL para facilitar a modelagem:
 
 ###  View Principal: `vw_FatoVendas`
 
@@ -121,100 +143,25 @@ FROM DimCustomer dc
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 
 ```
-## 6. Medidas DAX no Power BI
+4. Modeling
+Medidas DAX criadas no Power BI:
 
-**Receita Total**
-```
-Receita Total = SUM(vw_FatoVendas[Receita Venda])
-```
-**Lucro Total**
-```
-Lucro Total = SUM(vw_FatoVendas[Lucro Venda])
-```
-**Margem Lucro**
-```
-Margem Lucro = DIVIDE([LucroTotal], [ReceitaTotal])
-```
-**Ticket Medio**
-```
-Ticket Medio = AVERAGE(vw_FatoVendas[Ticket Médio])
-```
-**QTD Pedidos**
-```
-QTDPedidos = DISTINCTCOUNT(vw_FatoVendas[Nº Pedido])
-```
-**Custo Total**
-```
-Custo Total = SUM(vw_FatoVendas[Custo Venda])
-```
-**QTD Clientes**
-```
-QTD Clientes = COUNT(vw_DimClientes[ID Cliente])
-```
-**QTD Vendida**
-```
-QTD Vendida = SUM(vw_FatoVendas[Qtd Vendida])
+Receita Total, Lucro Total, Margem Lucro, Ticket Médio
 
-```
-**Meta Lucro Pais Ano**
-```
+MetaLucroPorPaisAno: crescimento de 10% sobre o lucro do ano anterior
 
-MetaLucroPorPaisAno = 
-VAR pais = SELECTEDVALUE(vw_FatoVendas[País])
-VAR ano = SELECTEDVALUE(vw_FatoVendas[Ano])
-VAR lucroAnterior = 
- CALCULATE(
- SUM(vw_FatoVendas[Lucro Venda]),
- FILTER(
- ALL(vw_FatoVendas),
- vw_FatoVendas[País] = pais &&
- vw_FatoVendas[Ano] = ano - 1
- )
- )
-RETURN
- COALESCE(lucroAnterior * 1.1, BLANK())
-```
-## 7. Tabelas DAX no Power BI
-```
+LucroPorPaisAnoComMeta: comparação entre lucro real e meta
 
-```
-**Lucro Por Pais Ano**
-```
+Tabelas DAX:
+
+DAX
+````
 LucroPorPaisAno = 
-SUMMARIZE(
-    vw_FatoVendas,
-    vw_FatoVendas[País],
-    vw_FatoVendas[Ano],
-    "LucroReal", SUM(vw_FatoVendas[Lucro Venda])
-)
-
-```
-**Lucro Por Pais Ano Com Meta**
-```
-LucroPorPaisAnoComMeta = 
-ADDCOLUMNS(
-    LucroPorPaisAno,
-    "MetaLucro",
-    VAR pais = [País]
-    VAR ano = [Ano]
-    VAR lucroAnterior = 
-        CALCULATE(
-            SUM(vw_FatoVendas[Lucro Venda]),
-            FILTER(
-                vw_FatoVendas,
-                vw_FatoVendas[País] = pais &&
-                vw_FatoVendas[Ano] = ano - 1
-            )
-        )
-    RETURN
-        IF(ISBLANK(lucroAnterior), BLANK(), lucroAnterior * 1.1)
-)
-
-
-
-```
+SUMMARIZE(vw_FatoVendas, vw_FatoVendas[País]
+````
 ## 8. Considerações Finais
 Todas as colunas necessárias para análise estão integradas nas views.
+
 
 O projeto está preparado para segmentações por país, gênero, categoria e tempo.
 
