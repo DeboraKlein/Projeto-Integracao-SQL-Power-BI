@@ -188,5 +188,4 @@ SUMMARIZE(
 - Disconnected sources were avoided to ensure performance and consistency in Power BI.
 - Project developed by Débora Klein — integrating data with purpose and intelligence.
 
-## 8. Final Considerations
-All columns required for analysis are integrated into the views.
+
