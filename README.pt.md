@@ -5,7 +5,7 @@ Este projeto utiliza dados do banco **AdventureWorks DW 2014** para construir um
 
 ## Link do Dashboard
 
-[🔗 Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+[ Acesse o dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
 ## 1. Estrutura do Projeto
 
