@@ -11,11 +11,11 @@ Integration was done via custom SQL views, optimized DAX measures, and strategic
 
 
 ## 1. Project Structure
-SQL Views: vw_FatoVendas and vw_DimClientes with joins and calculations for profit, margin, and average ticket.
+**SQL Views:** vw_FatoVendas and vw_DimClientes with joins and calculations for profit, margin, and average ticket.
 
-DAX Measures: Total Profit, Total Revenue, Target by Country and Year, among others.
+**DAX Measures:** Total Profit, Total Revenue, Target by Country and Year, among others.
 
-Target Table: Dynamically calculated based on 10% growth over the previous year's profit.
+**Target Table:** Dynamically calculated based on 10% growth over the previous year's profit.
 
 ### Visuals:
 
