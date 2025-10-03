@@ -2,7 +2,8 @@
 This project uses data from the AdventureWorks DW 2014 database to build an interactive dashboard in Power BI, focusing on sales analysis, customer insights, and profit targets by country and year. 
 Integration was done via custom SQL views, optimized DAX measures, and strategic visuals.
 
-#### Download: Microsoft Docs
+#### Download: Microsoft Docs -  [Microsoft Docs](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
+
 
 #### Dashboard Link
 Access the Power BI Dashboard
