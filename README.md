@@ -18,13 +18,13 @@ The goal is to deliver a strategic view of global sales performance, with emphas
 
 ### Tables used:
 
-- FactInternetSales
-
-- DimCustomer, DimGeography
-
-- DimProduct, DimProductSubcategory, DimProductCategory
-
-- DimSalesTerritory
+- `FactInternetSales`
+- `DimCustomer`
+- `DimGeography`
+- `DimProduct`
+- `DimProductSubcategory`
+- `DimProductCategory`
+- `DimSalesTerritory`
 
 ### Initial observations:
 
@@ -76,22 +76,8 @@ The goal is to deliver a strategic view of global sales performance, with emphas
 
 - New vs. Returning Customers
 
-### 4. Tables Used
-- FactInternetSales
 
-- DimCustomer
-
-- DimGeography
-
-- DimProduct
-
-- DimProductSubcategory
-
-- DimProductCategory
-
-- DimSalesTerritory
-
-## 5. Data Preparation
+## 4. Data Preparation
 #### Two SQL views were created to streamline modeling:
 
 ### Main View: vw_FatoVendas
@@ -136,7 +122,7 @@ FROM DimCustomer dc
 INNER JOIN DimGeography dg ON dc.GeographyKey = dg.GeographyKey
 ````
 
-## 6. Modeling
+## 5. Modeling
 ### DAX measures created in Power BI:
 
 - Total Revenue, Total Profit, Profit Margin, Average Ticket
@@ -155,7 +141,7 @@ SUMMARIZE(
     "ActualProfit", SUM(vw_FatoVendas[Sales Profit])
 )
 ````
-## 7. Evaluation
+## 6. Evaluation
 ### Extracted insights:
 
 - Top profit countries: USA, Canada, and UK
@@ -168,7 +154,7 @@ SUMMARIZE(
 
 - Profit targets are achievable by focusing on high-margin countries
 
-## 8. Screenshots
+## 7. Screenshots
 
 ### Dashboard Cover
 ![Dashboard Visão Geral](https://github.com/user-attachments/assets/7359f55e-53f7-4a3c-92cc-6036491f303e)
@@ -178,11 +164,11 @@ SUMMARIZE(
 ![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 
 
-## 9. Dashboard Link
+## 8. Dashboard Link
 
 [Access the Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNGFiNzA1YjEtODI1ZS00MmIxLWJhYTItYWUzYzQ2YmYwZjFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
-## 10. Final Considerations
+## 9. Final Considerations
 - All columns required for analysis are integrated into the views.
 - The project is ready for segmentation by country, gender, category, and time. 
 - Disconnected sources were avoided to ensure performance and consistency in Power BI.
