@@ -35,7 +35,7 @@ Dashboard Cover
 Overview
 ![Bullet Chart](https://github.com/user-attachments/assets/88cb4f99-8984-47d1-adb5-2b57eed0658e)
 Smart Narrative with Insights
-
+![Smart Narrative](https://github.com/user-attachments/assets/5b522dca-2249-4e22-a538-0743a5c6de69)
 ## 3. Defined Indicators
 General Tab
 Total Revenue
